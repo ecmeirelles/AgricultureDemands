@@ -1,3 +1,14 @@
 .data-table--title {
   text-align: center;
 }
+
+.data-table--inactive {
+  background: #A52A2A;
+  color: #FFF;
+  border-radius: 5px;
+}
+
+.data-table--price {
+  font-size: 1.3em;
+  font-weight: bold;
+}

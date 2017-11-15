@@ -24,20 +24,20 @@ this.state = {
 
 const DataTable = props => (
   <div>
-    <Row className="custom-container">
+    <Row className='custom-container'>
       <Col xs={12}>
         <h1 className="data-table--title">O que o mercado precisa?</h1>
       </Col>
       <Col xs={12}>
         <Card>
         <Table selectable={false} style={{ fontFamily: 'Barlow' }}>
-          <TableHeader adjustForCheckbox={false} displaySelectAll={false}>
+          <TableHeader adjustForCheckbox={false} displaySelectAll={false} style={{ backgroundColor: ' #DCDCDC' }}>
             <TableRow selectable={false}>
             <TableHeaderColumn style={{textAlign: 'center'}}>
 
             </TableHeaderColumn>
             {monthsOfYear.map((month, key) =>(
-              <TableHeaderColumn key={key} style={{textAlign: 'center'}}>
+              <TableHeaderColumn key={key} style={{textAlign: 'center', color: '#000'}}>
                 {month.name}
               </TableHeaderColumn>
             ))}
@@ -45,7 +45,8 @@ const DataTable = props => (
           </TableHeader>
           <TableBody displayRowCheckbox={false} >
             <TableRow selectable={false}>
-              <TableHeaderColumn colSpan="13" style={{textAlign: 'center'}}>
+              <TableHeaderColumn colSpan='13'
+                style={{textAlign: 'center', backgroundColor: '#008B8B', color: '#FFF', fontSize: '1em'}}>
                 {props.products[0].name}
               </TableHeaderColumn>
             </TableRow>
@@ -56,13 +57,25 @@ const DataTable = props => (
                   <TableRowColumn key={index}>
                     <Row>
                       <Col xs={6}>{demand.total}</Col>
-                      <Col xs={6}>({demand.inactive})</Col>
-                      <Col xs={12}><FormattedNumber value={demand.price} format="BRL" /></Col>
+                      <Col className='data-table--inactive' xs={6}>{demand.inactive}</Col>
+                      <Col className='data-table--price' xs={12}>
+                        <FormattedNumber value={demand.price} format='BRL' />
+                      </Col>
                     </Row>
                   </TableRowColumn>
                 ))}
               </TableRow>
               ))}
+              <TableRow>
+                <TableRowColumn>Eu</TableRowColumn>
+                  <TableRowColumn>
+                    <Row>
+                      <Col xs={6}></Col>
+                      <Col className='data-table--inactive' xs={6}></Col>
+                      <Col xs={12}></Col>
+                    </Row>
+                  </TableRowColumn>
+              </TableRow>
             </TableBody>
           </Table>
         </Card>

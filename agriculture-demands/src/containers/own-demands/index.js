@@ -1,72 +1,44 @@
 import React from 'react';
-import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Row, Col, } from 'react-flexbox-grid';
 
 import { Card, CardTitle, CardText } from 'material-ui/Card';
-import TextField from 'material-ui/TextField';
-import RaisedButton from 'material-ui/RaisedButton';
-import { saveDemand, changeQuantity, changePrice } from '../../core/modules/farmer-demand.module';
 
-import DemandsList from './demands-list';
+const DemandList = props => {
+  return <Row className='custom-container'>
+    {props.demands.length === 0 &&
+    <Col xs={12}>
+      <p style={{ textAlign: 'center' }}>Não há demandas salvas.</p>
+    </Col>}
 
-const OwnDemands = props => (
-  <div>
-    <Row className='custom-container'>
-      <DemandsList />
-      <Col xs={12}>
-        <Card style={{ fontFamily: 'Barlow' }}>
-          <CardTitle title='Nova demanda' titleStyle={{ fontWeight: 'bold', fontFamily: 'Barlow' }} />
-          <CardText>
-            <Row>
+    {props.demands.length > 0 &&
+    <Col xs={12}>
+      <Card style={{ fontFamily: 'Barlow' }}>
+        <CardTitle title='Minhas demandas' titleStyle={{ fontWeight: 'bold', fontFamily: 'Barlow' }} />
+        <CardText>
+          {props.demands.map((demand, index) => (
+            <Row key={index}>
               <Col xs={4}>
-                <p>Produto: Alface Embalada</p>
+                <p>Produto: {demand.product}</p>
               </Col>
               <Col xs={4}>
-                <TextField
-                  floatingLabelText='Quantidade'
-                  value={props.quantity}
-                  onChange={(event, value) => props.changeQuantity(value)}
-                />
+                <p>Quantidade: {demand.quantity}</p>
               </Col>
               <Col xs={4}>
-                <TextField
-                  floatingLabelText='Preço'
-                  value={props.price}
-                  onChange={(event, value) => props.changePrice(value)}
-                />
-              </Col>
-              <Col xs={12}>
-                <RaisedButton
-                  fullWidth
-                  label='Salvar Demanda'
-                  backgroundColor='#a4c639'
-                  labelColor='#fff'
-                  style={{ marginTop: '1em' }}
-                  onClick={() => props.saveDemand()}
-                />
+                <p>Preço: {demand.price}</p>
               </Col>
             </Row>
-          </CardText>
-        </Card>
-      </Col>
-    </Row>
-  </div>
-);
+          ))}
+        </CardText>
+      </Card>
+    </Col>}
+  </Row>
+}
 
 const mapStateToProps = state => ({
-  quantity: state.farmerDemand.quantity,
-  price: state.farmerDemand.price,
-  products: state.farmerDemand.products,
+  demands: state.farmerDemand.demands,
 });
-
-const mapDispatchToProps = dispatch => bindActionCreators({
-  saveDemand,
-  changeQuantity,
-  changePrice
-}, dispatch);
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
-)(OwnDemands);
+)(DemandList);

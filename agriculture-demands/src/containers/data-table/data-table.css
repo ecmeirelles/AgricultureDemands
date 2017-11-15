@@ -12,3 +12,12 @@
   font-size: 1.3em;
   font-weight: bold;
 }
+
+.data-table--mydemand {
+  padding: 5px;
+}
+
+.data-table--mydemand > input {
+  font-family: 'Barlow', sans-serif;
+  width: 100%;
+}

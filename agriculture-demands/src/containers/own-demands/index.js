@@ -13,7 +13,7 @@ const DemandList = props => {
 
     {props.demands.length > 0 &&
     <Col xs={12}>
-      <Card style={{ fontFamily: 'Barlow' }}>
+      <Card style={{ fontFamily: 'Barlow', fontSize: '1em' }}>
         <CardTitle title='Minhas demandas' titleStyle={{ fontWeight: 'bold', fontFamily: 'Barlow' }} />
         <CardText>
           {props.demands.map((demand, index) => (

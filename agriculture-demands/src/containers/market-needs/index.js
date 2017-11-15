@@ -7,7 +7,7 @@ import { Tabs, Tab } from 'material-ui/Tabs';
 
 const MarketNeeds = props => (
   <div>
-    <Tabs tabItemContainerStyle={{ backgroundColor: '#1d3141' }} inkBarStyle={{ backgroundColor: '#008B8B' }}>
+    <Tabs tabItemContainerStyle={{ backgroundColor: '#1d3141' }} inkBarStyle={{ backgroundColor: '#2E8B57' }}>
       <Tab label="Demandas do Mercado" >
         <DataTable />
       </Tab>

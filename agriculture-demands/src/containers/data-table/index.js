@@ -3,6 +3,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Row, Col, } from 'react-flexbox-grid';
 import { FormattedNumber } from 'react-intl';
+import { ReactTextField, validator } from 'react-textfield';
 
 import { Card } from 'material-ui/Card';
 import {
@@ -31,12 +32,12 @@ const DataTable = props => (
       <Col xs={12}>
         <Card>
         <Table selectable={false} style={{ fontFamily: 'Barlow' }}>
-          <TableHeader adjustForCheckbox={false} displaySelectAll={false} style={{ backgroundColor: ' #DCDCDC' }}>
+          <TableHeader adjustForCheckbox={false} displaySelectAll={false} style={{ backgroundColor: '#DCDCDC' }}>
             <TableRow selectable={false}>
             <TableHeaderColumn style={{textAlign: 'center'}}>
 
             </TableHeaderColumn>
-            {monthsOfYear.map((month, key) =>(
+            {monthsOfYear.map((month, key) => (
               <TableHeaderColumn key={key} style={{textAlign: 'center', color: '#000'}}>
                 {month.name}
               </TableHeaderColumn>
@@ -46,7 +47,7 @@ const DataTable = props => (
           <TableBody displayRowCheckbox={false} >
             <TableRow selectable={false}>
               <TableHeaderColumn colSpan='13'
-                style={{textAlign: 'center', backgroundColor: '#008B8B', color: '#FFF', fontSize: '1em'}}>
+                style={{textAlign: 'center', backgroundColor: '#2E8B57', color: '#FFF', fontSize: '1em'}}>
                 {props.products[0].name}
               </TableHeaderColumn>
             </TableRow>
@@ -68,13 +69,17 @@ const DataTable = props => (
               ))}
               <TableRow>
                 <TableRowColumn>Eu</TableRowColumn>
-                  <TableRowColumn>
+                  {monthsOfYear.map((month, key) => (
+                  <TableRowColumn key={key}>
                     <Row>
-                      <Col xs={6}></Col>
-                      <Col className='data-table--inactive' xs={6}></Col>
-                      <Col xs={12}></Col>
+                      <Col xs={12} className='data-table--mydemand'>
+                        <input placeholder="Qtd." />
+                      </Col>
+                      <Col xs={12} className='data-table--mydemand'>
+                        <input placeholder="Preço" />
+                      </Col>
                     </Row>
-                  </TableRowColumn>
+                  </TableRowColumn>))}
               </TableRow>
             </TableBody>
           </Table>
